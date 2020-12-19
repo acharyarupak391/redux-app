@@ -8,9 +8,9 @@ import TextField from "@material-ui/core/TextField";
 import { styled } from "@material-ui/core/styles";
 
 const MyTextField = styled(TextField)({
-  width: '80%',
-  fontFamily: 'Open Sans'
-})
+  width: "80%",
+  fontFamily: "Open Sans",
+});
 
 class Form extends React.Component {
   constructor(props) {
@@ -25,6 +25,22 @@ class Form extends React.Component {
       warningLabelClass: "",
       inputField: undefined,
     };
+
+  }
+  
+  componentDidMount() {
+    if (this.props.user) {
+      this.setState({
+        validationWarning:
+          "Welcome, " +
+          this.props.user.first_name +
+          " " +
+          this.props.user.last_name +
+          " | ID: " +
+          this.props.user.ID,
+        warningLabelClass: "warningOn success",
+      });
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -51,7 +67,7 @@ class Form extends React.Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     this.setState({ validationWarning: "", warningLabelClass: "" });
     this.props.reset_state();
 
@@ -101,9 +117,7 @@ class Form extends React.Component {
       : this.setState({ password: e.target.value });
     this.setState({ validationWarning: "", warningLabelClass: "" });
     if (e.target.type == "email") this.setState({ inputField: e.target });
-
   }
-
 
   render() {
     return (
@@ -116,7 +130,7 @@ class Form extends React.Component {
           label="Email"
           variant="standard"
           type="email"
-          onKeyPress={(e) => this.onFocusChange(e)}
+          onChange={(e) => this.onFocusChange(e)}
         />
         <br />
         <br />
@@ -124,7 +138,7 @@ class Form extends React.Component {
           label="Password"
           variant="standard"
           type="password"
-          onKeyPress={(e) => this.onFocusChange(e)}
+          onChange={(e) => this.onFocusChange(e)}
         />
         <br />
         <br />

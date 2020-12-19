@@ -1,7 +1,7 @@
 import {
   REQUEST_SUCCESS_LABEL,
   REQUEST_FAILED_LABEL,
-  RESET_STATE
+  RESET_STATE,
 } from "../actions/index";
 
 export default function formReducer(state, action) {
@@ -12,7 +12,7 @@ export default function formReducer(state, action) {
         ...state,
         user: action.data.user,
         status: action.data.status,
-        error: null
+        error: null,
       };
 
     case REQUEST_FAILED_LABEL:
@@ -20,14 +20,15 @@ export default function formReducer(state, action) {
         ...state,
         user: null,
         error: action.error,
-        status: action.error.status
+        status: action.error.status,
       };
 
     case RESET_STATE:
       return {
         user: null,
         error: null,
-        status: null
+        status: null,
+        // ...state
       };
 
     default:
