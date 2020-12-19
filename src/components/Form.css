@@ -1,0 +1,42 @@
+html,
+body {
+  margin: 0;
+  background: rgb(29, 12, 0);
+  width: 100%;
+  font-family: Roboto;
+}
+
+.form-div {
+  margin: 0px;
+  height: 80vh;
+}
+
+.form-div > form[name="my-form"] {
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  width: 55%;
+  margin: 150px auto;
+  background-color: turquoise;
+  /* position: relative; */
+}
+
+.warningOn {
+  display: block;
+  background-color: rgb(255, 161, 161);
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 4px;
+  padding: 3px;
+  color: rgb(102, 0, 0);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid rgb(102, 0, 0);
+  box-sizing: border-box;
+}
+
+.success {
+  background-color: #74ff74;
+  color: rgb(9, 54, 0);
+  border: 1px solid rgb(9, 54, 0);
+}
