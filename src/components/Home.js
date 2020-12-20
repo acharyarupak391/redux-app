@@ -41,7 +41,10 @@ class Home extends React.Component {
             {this.props.user.first_name} {this.props.user.last_name}
           </p>
           <p>
-            since {dateString[1]} {dateString[2]}, {dateString[3]}
+            joined{" "}
+            <span>
+              {dateString[1]} {dateString[2]}, {dateString[3]}
+            </span>
           </p>
         </div>
       </div>

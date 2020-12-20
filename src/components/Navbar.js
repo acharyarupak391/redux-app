@@ -38,7 +38,7 @@ class Navbar extends React.Component {
               }
               to="/contact"
             >
-              Contact
+              Contact Us
             </Link>
             <span></span>
             <Button variant="outlined" color="inherit" onClick={this.onLogout}>

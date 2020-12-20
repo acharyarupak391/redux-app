@@ -1,0 +1,33 @@
+.contact-div {
+  position: relative;
+  margin: 20vh auto;
+  text-align: center;
+  padding: 0;
+}
+
+.contact-div > p,
+a > i {
+  border: 2px dotted rgb(0, 255, 179);
+  display: inline-block;
+  padding: 10px;
+  font-size: 25px;
+  font-family: "Jura";
+  background-color: white;
+}
+
+.contact-div > a > i {
+  margin-left: 5px;
+  padding: 12.5px;
+  border: 2px solid rgb(139, 139, 255);
+  background-color: white;
+  color: black;
+  transition: background-color 0.5s, color 0.5s, border 0.5s;
+  cursor: pointer;
+}
+
+.contact-div > a > i:hover {
+  background-color: #e34c41;
+  color: white;
+  border: 2px solid white;
+  transition: background-color 0.5s, color 0.5s, border 0.5s;
+}

@@ -26,3 +26,7 @@
   padding: 10px 5px;
   text-align: end;
 }
+
+.home-info-div > p:nth-child(3) > span {
+  color: lightseagreen;
+}

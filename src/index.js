@@ -53,7 +53,7 @@ class App extends React.Component {
             <Switch>
               {/* <Route path="/login" render={(props) => <Form {...props} />} /> */}
               <Route path="/login" component={Form} />
-              <Route path="/" component={Home} exact />
+              <Route path={["/", "/home"]} component={Home} exact />
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
             </Switch>

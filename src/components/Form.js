@@ -129,35 +129,37 @@ class Form extends React.Component {
       return <Redirect to="/" />;
     }
     return (
-      <form name="my-form">
-        <span className={this.state.warningLabelClass}>
-          {this.state.validationWarning}
-        </span>
-        <br />
-        <MyTextField
-          label="Email"
-          variant="standard"
-          type="email"
-          onChange={(e) => this.onFocusChange(e)}
-        />
-        <br />
-        <br />
-        <MyTextField
-          label="Password"
-          variant="standard"
-          type="password"
-          onChange={(e) => this.onFocusChange(e)}
-        />
-        <br />
-        <br />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(e) => this.onSubmit(e)}
-        >
-          LogIn
-        </Button>
-      </form>
+      <div className="form-div">
+        <form name="my-form">
+          <span className={this.state.warningLabelClass}>
+            {this.state.validationWarning}
+          </span>
+          <br />
+          <MyTextField
+            label="Email"
+            variant="standard"
+            type="email"
+            onChange={(e) => this.onFocusChange(e)}
+          />
+          <br />
+          <br />
+          <MyTextField
+            label="Password"
+            variant="standard"
+            type="password"
+            onChange={(e) => this.onFocusChange(e)}
+          />
+          <br />
+          <br />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => this.onSubmit(e)}
+          >
+            LogIn
+          </Button>
+        </form>
+      </div>
     );
   }
 }
