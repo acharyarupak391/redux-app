@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Jura:wght@700&family=Montserrat&family=Raleway:ital@1&family=Roboto:ital,wght@1,300&display=swap&family=Bebas+Neue");
+
+.home-info-div {
+  border: 1px solid white;
+  padding: 15px 20px 0px 20px;
+  color: white;
+  display: inline-block;
+  margin: 25vh 27vw;
+}
+
+.home-info-div > p:nth-child(1) {
+  font-size: 25px;
+  font-family: "Bebas Neue", cursive;
+  margin-top: 10px;
+}
+
+.name {
+  margin-top: 5px;
+  font-size: 75px;
+  font-weight: 400;
+  font-family: "Jura", sans-serif;
+}
+
+.home-info-div > p:nth-child(3) {
+  border-top: 2px solid white;
+  padding: 10px 5px;
+  text-align: end;
+}

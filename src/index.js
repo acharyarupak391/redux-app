@@ -16,6 +16,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Form from "./components/Form";
 import Home from "./components/Home";
 import About from "./components/About";
+import Contact from "./components/Contact";
 
 const initialState = {
   user: null,
@@ -48,12 +49,13 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <div className="form-div">
+          <div className="main-div">
             <Switch>
               {/* <Route path="/login" render={(props) => <Form {...props} />} /> */}
               <Route path="/login" component={Form} />
               <Route path="/" component={Home} exact />
               <Route path="/about" component={About} />
+              <Route path="/contact" component={Contact} />
             </Switch>
           </div>
         </PersistGate>

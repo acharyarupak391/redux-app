@@ -5,7 +5,7 @@ import { reset_state } from "../actions/index";
 
 import Navbar from "../components/Navbar";
 
-class About extends React.Component {
+class Contact extends React.Component {
   constructor(props) {
     super();
     this.state = { loggedOut: false };
@@ -28,7 +28,7 @@ class About extends React.Component {
         <Redirect to={{ pathname: "/login", state: { redirected: true } }} />
       );
     }
-    let prop = { navprop: this.changeLoggedOutState, active: "about" };
+    let prop = { navprop: this.changeLoggedOutState, active: "contact" };
     return (
       <div>
         <Navbar {...prop} />
@@ -47,4 +47,4 @@ const mapDispatchToProps = {
   reset_state,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(About);
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

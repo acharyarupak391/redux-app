@@ -3,7 +3,7 @@ import axios from "axios";
 import {
   REQUEST_SUCCESS_LABEL,
   REQUEST_FAILED_LABEL,
-  RESET_STATE
+  RESET_STATE,
 } from "../actions/index";
 
 function* initiate_login(action) {
@@ -12,7 +12,7 @@ function* initiate_login(action) {
     const data = yield axios
       .post(url, {
         email: action.payload.email,
-        password: action.payload.password
+        password: action.payload.password,
       })
       .then((res) => {
         return { status: res.status, user: res.data.user };
@@ -23,8 +23,8 @@ function* initiate_login(action) {
       type: REQUEST_FAILED_LABEL,
       error: {
         status: error.response.status,
-        message: error.response.data.error
-      }
+        message: error.response.data.error,
+      },
     });
   }
 }
