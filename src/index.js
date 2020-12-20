@@ -1,6 +1,5 @@
 import React from "react";
 import { render } from "react-dom";
-import Form from "./components/Form";
 import "./index.css";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -9,22 +8,27 @@ import createSagaMiddleware from "redux-saga";
 import formReducer from "./reducers/index";
 import rootSaga from "./sagas/index";
 
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
-import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Form from "./components/Form";
+import Home from "./components/Home";
+import About from "./components/About";
 
 const initialState = {
-  user: {first_name: ""},
+  user: null,
   error: null,
-  status: null
+  status: null,
 };
 
 const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-}
+};
 
 const persistedReducer = persistReducer(persistConfig, formReducer);
 
@@ -35,8 +39,7 @@ const store = createStore(
   applyMiddleware(sagaMiddleware)
 );
 
-const persistor = persistStore(store)
-
+const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
@@ -46,7 +49,12 @@ class App extends React.Component {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <div className="form-div">
-            <Form />
+            <Switch>
+              {/* <Route path="/login" render={(props) => <Form {...props} />} /> */}
+              <Route path="/login" component={Form} />
+              <Route path="/" component={Home} exact />
+              <Route path="/about" component={About} />
+            </Switch>
           </div>
         </PersistGate>
       </Provider>
@@ -54,4 +62,9 @@ class App extends React.Component {
   }
 }
 
-render(<App />, window.document.getElementById("root"));
+render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  window.document.getElementById("root")
+);

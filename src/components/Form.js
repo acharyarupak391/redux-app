@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { styled } from "@material-ui/core/styles";
 
+import { Redirect } from "react-router-dom";
+
 const MyTextField = styled(TextField)({
   width: "80%",
   fontFamily: "Open Sans",
@@ -25,28 +27,31 @@ class Form extends React.Component {
       warningLabelClass: "",
       inputField: undefined,
     };
-
   }
-  
+
   componentDidMount() {
-    if (this.props.user) {
+    // if (this.props.user) {
+    //   this.setState({
+    //     validationWarning:
+    //       "Welcome, " +
+    //       this.props.user.first_name +
+    //       " " +
+    //       this.props.user.last_name +
+    //       " | ID: " +
+    //       this.props.user.ID,
+    //     warningLabelClass: "warningOn success",
+    //   });
+    // }
+    if (this.props.location.state && this.props.location.state.redirected) {
       this.setState({
-        validationWarning:
-          "Welcome, " +
-          this.props.user.first_name +
-          " " +
-          this.props.user.last_name +
-          " | ID: " +
-          this.props.user.ID,
-        warningLabelClass: "warningOn success",
+        validationWarning: "Please login first!",
+        warningLabelClass: "warningOn",
       });
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.status && prevProps.status !== this.props.status) {
-      // console.log("didupdate(prevprops): ", prevProps);
-      // console.log("didupdate(this.props): ", this.props);
       this.props.status == 200
         ? this.setState({
             validationWarning:
@@ -120,6 +125,9 @@ class Form extends React.Component {
   }
 
   render() {
+    if (this.props.user) {
+      return <Redirect to="/" />;
+    }
     return (
       <form name="my-form">
         <span className={this.state.warningLabelClass}>
