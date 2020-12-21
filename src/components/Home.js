@@ -12,6 +12,10 @@ class Home extends React.Component {
     // console.log("Home props: ", props);
   }
 
+  componentDidMount() {
+    document.title = "Home";
+  }
+
   changeLoggedOutState = () => {
     this.setState({ loggedOut: true });
     this.props.reset_state();

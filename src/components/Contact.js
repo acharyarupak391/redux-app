@@ -9,8 +9,11 @@ import "./Contact.css";
 class Contact extends React.Component {
   constructor(props) {
     super();
-    this.state = { loggedOut: false };
     // console.log("Contact props: ", props);
+  }
+
+  componentDidMount() {
+    document.title = "Contact";
   }
 
   changeLoggedOutState = () => {
@@ -23,19 +26,14 @@ class Contact extends React.Component {
     window.open(e.target.parentElement.href);
   }
 
+  blink(e) {
+    e.target.select();
+    document.execCommand("copy");
+  }
+
   render() {
-    if (this.state.loggedOut && !this.props.user) {
-      return (
-        <Redirect to={{ pathname: "/login", state: { redirected: false } }} />
-      );
-    }
-    if (!this.props.user) {
-      return (
-        <Redirect to={{ pathname: "/login", state: { redirected: true } }} />
-      );
-    }
-    let emailHref = "mailto:" + this.props.user.email;
-    let prop = { navprop: this.changeLoggedOutState, active: "contact" };
+    if (this.props.user) var emailHref = "mailto:" + this.props.user.email;
+    let prop = { active: "contact" };
     return (
       <div>
         <Navbar {...prop} />

@@ -6,6 +6,7 @@
 }
 
 .info-panel {
+  display: inline-block;
   min-height: 400px;
   background-color: rgb(45, 241, 232);
   width: 30%;
@@ -45,3 +46,13 @@
   right: 5px;
   color: rgba(0, 0, 0, 0.548);
 }
+
+.about-form-div {
+  display: inline-block;
+  background-color: lightgray;
+  padding: 10px;
+  width: 50%;
+  border-radius: 3px;
+}
+
+/* .about-form-div > inp */

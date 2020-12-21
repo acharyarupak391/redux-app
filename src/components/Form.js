@@ -9,8 +9,6 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { styled } from "@material-ui/core/styles";
 
-import { Redirect } from "react-router-dom";
-
 const MyTextField = styled(TextField)({
   width: "80%",
   fontFamily: "Open Sans",
@@ -25,57 +23,47 @@ class Form extends React.Component {
     this.state = {
       email: "",
       password: "",
-      validationWarning: "",
-      warningLabelClass: "",
+      validationWarning: "LogIn to continue!",
+      warningLabelClass: "warningOn info",
       inputField: undefined,
+      id: "",
     };
   }
 
   componentDidMount() {
-    // if (this.props.user) {
-    //   this.setState({
-    //     validationWarning:
-    //       "Welcome, " +
-    //       this.props.user.first_name +
-    //       " " +
-    //       this.props.user.last_name +
-    //       " | ID: " +
-    //       this.props.user.ID,
-    //     warningLabelClass: "warningOn success",
-    //   });
-    // }
-    if (this.props.location.state && this.props.location.state.redirected) {
-      this.setState({
-        validationWarning: "Please login first!",
-        warningLabelClass: "warningOn",
-      });
-    }
+    document.title = "Login";
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.status && prevProps.status !== this.props.status) {
-      this.props.status == 200
-        ? this.setState({
-            validationWarning:
-              "Welcome, " +
-              this.props.user.first_name +
-              " " +
-              this.props.user.last_name +
-              " | ID: " +
-              this.props.user.ID,
-            warningLabelClass: "warningOn success",
-          })
-        : this.setState({
-            validationWarning:
-              "Error " + this.props.status + ": " + this.props.error.message,
-            warningLabelClass: "warningOn",
-          });
+      this.setState({ id: "" });
+      if (this.props.status == 200) {
+        // this.setState({
+        //   validationWarning:
+        //     "Welcome, " +
+        //     this.props.user.first_name +
+        //     " " +
+        //     this.props.user.last_name +
+        //     " | ID: " +
+        //     this.props.user.ID,
+        //   warningLabelClass: "warningOn success",
+        // });
+      } else {
+        this.setState({
+          validationWarning:
+            "Error " + this.props.status + ": " + this.props.error.message,
+          warningLabelClass: "warningOn",
+        });
+      }
     }
   }
 
   onSubmit(e) {
     // e.preventDefault();
-    this.setState({ validationWarning: "", warningLabelClass: "" });
+    this.setState({
+      validationWarning: "",
+      warningLabelClass: "",
+    });
     this.props.reset_state();
 
     let email = this.state.email;
@@ -116,6 +104,7 @@ class Form extends React.Component {
       email,
       password,
     });
+    this.setState({ id: "loader" });
   }
 
   onFocusChange(e) {
@@ -159,6 +148,28 @@ class Form extends React.Component {
           >
             LogIn
           </Button>
+          <svg
+            id={this.state.id}
+            x="0px"
+            y="0px"
+            width="40px"
+            height="40px"
+            viewBox="0 0 40 40"
+            enableBackground="new 0 0 40 40"
+          >
+            <path
+              opacity="0.2"
+              fill="#000"
+              d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+    s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+    c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"
+            />
+            <path
+              fill="#000"
+              d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+    C22.32,8.481,24.301,9.057,26.013,10.047z"
+            ></path>
+          </svg>
         </form>
       </div>
     );

@@ -2,6 +2,7 @@ import {
   REQUEST_SUCCESS_LABEL,
   REQUEST_FAILED_LABEL,
   RESET_STATE,
+  DISPATCH_MESSAGE,
 } from "../actions/index";
 
 export default function formReducer(state, action) {
@@ -25,10 +26,16 @@ export default function formReducer(state, action) {
 
     case RESET_STATE:
       return {
+        ...state,
         user: null,
         error: null,
         status: null,
-        // ...state
+      };
+
+    case DISPATCH_MESSAGE:
+      return {
+        ...state,
+        message: action.message,
       };
 
     default:

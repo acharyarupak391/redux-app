@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { reset_state } from "../actions/index";
-import { Redirect } from "react-router-dom";
 
 import "./Navbar.css";
 import AppBar from "@material-ui/core/AppBar";
@@ -13,33 +12,15 @@ class Navbar extends React.Component {
     super();
     console.log("Navbar props: ", props);
     if (props.active !== "none") {
-      this.state.logoutPressed = false;
+      this.state = { logoutPressed: null };
     }
   }
 
   onLogout = () => {
-    this.state.logoutPressed = true;
     this.props.reset_state();
   };
 
   render() {
-    if (
-      this.props.active !== "none" &&
-      this.state.logoutPressed &&
-      !this.props.user
-    ) {
-      return (
-        <Redirect to={{ pathname: "/login", state: { redirected: false } }} />
-      );
-    }
-    if (this.props.active !== "none" && !this.props.user) {
-      return (
-        <Redirect to={{ pathname: "/login", state: { redirected: true } }} />
-      );
-    }
-    if (this.props.active == "none" && this.props.user) {
-      return <Redirect to="/" />;
-    }
     var logoutBtn = null;
     if (this.props.active !== "none") {
       logoutBtn = (

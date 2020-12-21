@@ -4,6 +4,7 @@ import {
   REQUEST_SUCCESS_LABEL,
   REQUEST_FAILED_LABEL,
   RESET_STATE,
+  DISPATCH_MESSAGE,
 } from "../actions/index";
 
 function* initiate_login(action) {
@@ -32,4 +33,5 @@ function* initiate_login(action) {
 export default function* rootSaga() {
   yield takeLatest("INITIATE_LOGIN", initiate_login);
   yield put({ type: RESET_STATE });
+  // yield takeLatest(DISPATCH_MESSAGE, dispatch_message);
 }

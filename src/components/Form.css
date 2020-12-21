@@ -8,7 +8,7 @@ body {
 
 .form-div {
   margin: 0px;
-  height: 80vh;
+  height: 99.5vh;
 }
 
 .form-div > form[name="my-form"] {
@@ -18,7 +18,7 @@ body {
   width: 55%;
   margin: 150px auto;
   background-color: turquoise;
-  /* position: relative; */
+  position: relative;
 }
 
 .warningOn {
@@ -39,4 +39,36 @@ body {
   background-color: #74ff74;
   color: rgb(9, 54, 0);
   border: 1px solid rgb(9, 54, 0);
+}
+
+.info {
+  background-color: #74c0ff;
+  color: rgb(0, 10, 54);
+  border: 1px solid rgb(8, 0, 54);
+}
+
+form[name="my-form"] > svg {
+  position: absolute;
+  left: 15%;
+  bottom: 8px;
+  display: none;
+}
+
+#loader {
+  display: block;
+  animation: rotate 0.5s infinite;
+  animation: name duration timing-function delay iteration-count direction
+    fill-mode;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

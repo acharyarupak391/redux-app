@@ -7,21 +7,19 @@ import createSagaMiddleware from "redux-saga";
 // import { logger } from "redux-logger";
 import formReducer from "./reducers/index";
 import rootSaga from "./sagas/index";
+import { BrowserRouter } from "react-router-dom";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Form from "./components/Form";
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import App from "./App";
 
 const initialState = {
   user: null,
   error: null,
   status: null,
+  message: null,
 };
 
 const sagaMiddleware = createSagaMiddleware();
@@ -44,19 +42,13 @@ const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
-class App extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <div className="main-div">
-            <Switch>
-              {/* <Route path="/login" render={(props) => <Form {...props} />} /> */}
-              <Route path="/login" component={Form} />
-              <Route path={["/", "/home"]} component={Home} exact />
-              <Route path="/about" component={About} />
-              <Route path="/contact" component={Contact} />
-            </Switch>
+            <App />
           </div>
         </PersistGate>
       </Provider>
@@ -66,7 +58,7 @@ class App extends React.Component {
 
 render(
   <BrowserRouter>
-    <App />
+    <Home />
   </BrowserRouter>,
   window.document.getElementById("root")
 );
