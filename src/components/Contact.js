@@ -40,7 +40,21 @@ class Contact extends React.Component {
       <div>
         <Navbar {...prop} />
         <div className="contact-div">
-          <p>{this.props.user.email}</p>
+          <p id="emailP">
+            <input
+              onClick={(e) => this.blink(e)}
+              id="email"
+              readOnly
+              value={this.props.user.email}
+              style={{
+                width: this.props.user.email.length * 14.75 + "px",
+              }}
+            />
+            <span id="copied">
+              <i className="fas fa-clipboard-check"></i>
+              <i>Copied!</i>
+            </span>
+          </p>
           <a href={emailHref}>
             <i
               className="far fa-envelope"

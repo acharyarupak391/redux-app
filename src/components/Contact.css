@@ -5,19 +5,64 @@
   padding: 0;
 }
 
-.contact-div > p,
-a > i {
+#copied {
+  position: absolute;
+  font-size: 25px;
+  color: rgb(0, 173, 0);
+  text-align: center;
+  left: -110px;
+  top: -10px;
+  opacity: 0;
+}
+
+#copied > .fas {
+  margin-right: 5px;
+}
+
+@keyframes blink {
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#emailP {
+  position: relative;
+  display: inline;
+}
+
+#email {
   border: 2px dotted rgb(0, 255, 179);
   display: inline-block;
   padding: 10px;
   font-size: 25px;
   font-family: "Jura";
   background-color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+#email:active {
+  outline: none;
+}
+
+#email:hover {
+  background-color: rgba(255, 255, 255, 0.774);
+}
+
+#email:active ~ #copied {
+  animation: blink 1s normal;
 }
 
 .contact-div > a > i {
+  padding: 12px;
+  font-size: 25px;
   margin-left: 5px;
-  padding: 12.5px;
   border: 2px solid rgb(139, 139, 255);
   background-color: white;
   color: black;
