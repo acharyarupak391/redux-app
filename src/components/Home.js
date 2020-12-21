@@ -18,27 +18,20 @@ class Home extends React.Component {
   };
 
   render() {
-    if (this.state.loggedOut && !this.props.user) {
-      return (
-        <Redirect to={{ pathname: "/login", state: { redirected: false } }} />
-      );
+    let prop = { active: "home" };
+    if (this.props.user) {
+      var user = this.props.user;
+      var dateString = new Date(user.CreatedAt.split("T")[0])
+        .toDateString()
+        .split(" ");
     }
-    if (!this.props.user) {
-      return (
-        <Redirect to={{ pathname: "/login", state: { redirected: true } }} />
-      );
-    }
-    let prop = { navprop: this.changeLoggedOutState, active: "home" };
-    let dateString = new Date(this.props.user.CreatedAt.split("T")[0])
-      .toDateString()
-      .split(" ");
     return (
       <div>
         <Navbar {...prop} />
         <div className="home-info-div">
           <p>Hello,</p>
           <p className="name">
-            {this.props.user.first_name} {this.props.user.last_name}
+            {user.first_name} {user.last_name}
           </p>
           <p>
             joined{" "}

@@ -9,7 +9,6 @@ import "./About.css";
 class About extends React.Component {
   constructor(props) {
     super();
-    this.state = { loggedOut: false };
     // console.log("About props: ", props);
   }
 
@@ -19,22 +18,13 @@ class About extends React.Component {
   };
 
   render() {
-    if (this.state.loggedOut && !this.props.user) {
-      return (
-        <Redirect to={{ pathname: "/login", state: { redirected: false } }} />
-      );
+    let prop = { active: "about" };
+    if (this.props.user) {
+      var user = this.props.user;
+      var dateString = new Date(user.CreatedAt.split("T")[0])
+        .toDateString()
+        .split(" ");
     }
-    if (!this.props.user) {
-      return (
-        <Redirect to={{ pathname: "/login", state: { redirected: true } }} />
-      );
-    }
-    let prop = { navprop: this.changeLoggedOutState, active: "about" };
-    let user = this.props.user;
-    console.log(user);
-    let dateString = new Date(user.CreatedAt.split("T")[0])
-      .toDateString()
-      .split(" ");
     return (
       <div>
         <Navbar {...prop} />

@@ -3,6 +3,8 @@ import "./Form.css";
 import { connect } from "react-redux";
 import { initiate_login, reset_state } from "../actions/index";
 
+import Navbar from "./Navbar";
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { styled } from "@material-ui/core/styles";
@@ -125,11 +127,10 @@ class Form extends React.Component {
   }
 
   render() {
-    if (this.props.user) {
-      return <Redirect to="/" />;
-    }
+    let prop = { active: "none" };
     return (
       <div className="form-div">
+        <Navbar {...prop} />
         <form name="my-form">
           <span className={this.state.warningLabelClass}>
             {this.state.validationWarning}

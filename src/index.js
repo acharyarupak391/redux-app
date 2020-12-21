@@ -70,3 +70,5 @@ render(
   </BrowserRouter>,
   window.document.getElementById("root")
 );
+
+export default store;
