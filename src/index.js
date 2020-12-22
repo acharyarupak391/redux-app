@@ -20,6 +20,7 @@ const initialState = {
   error: null,
   status: null,
   message: null,
+  language: null,
 };
 
 const sagaMiddleware = createSagaMiddleware();

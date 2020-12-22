@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { reset_state } from "../../store/actions/index";
+import { reset_state, change_language } from "../../store/actions/index";
 
 import "./Navbar.css";
 import AppBar from "@material-ui/core/AppBar";
@@ -34,15 +34,16 @@ const MySelect = styled(Select)({
 
 const MyFormControl = styled(FormControl)({});
 
+var msg_obj = {
+  en,
+  np,
+  ch,
+  es,
+};
 class Navbar extends React.Component {
   constructor(props) {
     super();
     // console.log("Navbar props: ", props);
-    this.state = {
-      language: "en",
-      locale: "en",
-      messages: en,
-    };
   }
 
   onLogout = () => {
@@ -50,23 +51,7 @@ class Navbar extends React.Component {
   };
 
   languageChange = (e) => {
-    switch (e.target.value) {
-      case "en":
-        this.setState({ language: "en", locale: "en", messages: en });
-        break;
-      case "np":
-        this.setState({ language: "np", locale: "np", messages: np });
-        break;
-      case "ch":
-        this.setState({ language: "ch", locale: "ch", messages: ch });
-        break;
-      case "es":
-        this.setState({ language: "es", locale: "es", messages: es });
-        break;
-      default:
-        this.setState({ language: "en", locale: "en", messages: en });
-        break;
-    }
+    this.props.change_language(e.target.value);
   };
 
   render() {
@@ -75,9 +60,9 @@ class Navbar extends React.Component {
         <AppBar position="static">
           <Toolbar className="toolbar">
             <IntlProvider
-              key={this.state.locale}
-              messages={this.state.messages}
-              locale={this.state.locale}
+              key={this.props.language}
+              messages={msg_obj[this.props.language]}
+              locale="en"
             >
               <Link
                 className={this.props.active == "home" ? "link active" : "link"}
@@ -107,7 +92,7 @@ class Navbar extends React.Component {
                 <MySelect
                   labelId=""
                   id=""
-                  value={this.state.language}
+                  value={this.props.language}
                   onChange={this.languageChange}
                   label="Language"
                   variant="filled"
@@ -141,9 +126,11 @@ class Navbar extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
+    language: state.language,
   };
 }
 const mapDispatchToProps = {
   reset_state,
+  change_language,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

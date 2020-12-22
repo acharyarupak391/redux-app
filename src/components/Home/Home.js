@@ -1,7 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
+import { change_language } from "../../store/actions/index";
+
+import { IntlProvider, FormattedMessage } from "react-intl";
+
+import { np, en, es, ch } from "../../lang";
 
 import "./Home.css";
+var msg_obj = {
+  en,
+  np,
+  ch,
+  es,
+};
 class Home extends React.Component {
   constructor(props) {
     super();
@@ -18,26 +29,32 @@ class Home extends React.Component {
   };
 
   render() {
-    if (this.props.user) {
-      var user = this.props.user;
-      var dateString = new Date(user.CreatedAt.split("T")[0])
-        .toDateString()
-        .split(" ");
-    }
+    var user = this.props.user;
+    var dateString = new Date(user.CreatedAt.split("T")[0])
+      .toDateString()
+      .split(" ");
     return (
       <div id="home-outer-div">
-        <div className="home-info-div">
-          <p>Hello,</p>
-          <p className="name">
-            {user.first_name} {user.last_name}
-          </p>
-          <p>
-            joined{" "}
-            <span>
-              {dateString[1]} {dateString[2]}, {dateString[3]}
-            </span>
-          </p>
-        </div>
+        <IntlProvider
+          key={this.props.language}
+          messages={msg_obj[this.props.language]}
+          locale="en"
+        >
+          <div className="home-info-div">
+            <p>
+              <FormattedMessage id="hello" values="" />,
+            </p>
+            <p className="name">
+              {user.first_name} {user.last_name}
+            </p>
+            <p>
+              <FormattedMessage id="joined" values="" />{" "}
+              <span>
+                {dateString[1]} {dateString[2]}, {dateString[3]}
+              </span>
+            </p>
+          </div>
+        </IntlProvider>
       </div>
     );
   }
@@ -46,7 +63,12 @@ class Home extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
+    language: state.language,
   };
 }
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = {
+  change_language,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

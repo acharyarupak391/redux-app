@@ -4,7 +4,6 @@ import {
   REQUEST_SUCCESS_LABEL,
   REQUEST_FAILED_LABEL,
   RESET_STATE,
-  DISPATCH_MESSAGE,
 } from "../actions/index";
 
 function* initiate_login(action) {

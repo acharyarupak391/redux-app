@@ -3,6 +3,7 @@ import {
   REQUEST_FAILED_LABEL,
   RESET_STATE,
   DISPATCH_MESSAGE,
+  CHANGE_LANGUAGE,
 } from "../actions/index";
 
 export default function formReducer(state, action) {
@@ -14,6 +15,7 @@ export default function formReducer(state, action) {
         user: action.data.user,
         status: action.data.status,
         error: null,
+        language: "en",
       };
 
     case REQUEST_FAILED_LABEL:
@@ -36,6 +38,12 @@ export default function formReducer(state, action) {
       return {
         ...state,
         message: action.message,
+      };
+
+    case CHANGE_LANGUAGE:
+      return {
+        ...state,
+        language: action.language,
       };
 
     default:

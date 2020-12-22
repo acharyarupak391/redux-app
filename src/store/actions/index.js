@@ -3,6 +3,7 @@ export const REQUEST_SUCCESS_LABEL = "REQUEST_SUCCESS_LABEL";
 export const REQUEST_FAILED_LABEL = "REQUEST_FAILED_LABEL";
 export const RESET_STATE = "RESET_STATE";
 export const DISPATCH_MESSAGE = "DISPATCH_MESSAGE";
+export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE";
 
 export const initiate_login = (login_params) => ({
   type: INITIATE_LOGIN,
@@ -16,4 +17,9 @@ export const reset_state = () => ({
 export const dispatch_message = (message) => ({
   type: DISPATCH_MESSAGE,
   message,
+});
+
+export const change_language = (language) => ({
+  type: CHANGE_LANGUAGE,
+  language,
 });
