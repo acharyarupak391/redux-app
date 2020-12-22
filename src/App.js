@@ -8,7 +8,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 
 import { connect } from "react-redux";
-import { reset_state } from "./actions/index";
+import { reset_state } from "./store/actions/index";
 
 // import Test from "./Test";
 

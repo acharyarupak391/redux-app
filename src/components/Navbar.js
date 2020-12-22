@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { reset_state } from "../actions/index";
+import { reset_state } from "../store/actions/index";
 
 import "./Navbar.css";
 import AppBar from "@material-ui/core/AppBar";

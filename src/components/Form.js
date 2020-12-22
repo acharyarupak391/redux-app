@@ -1,7 +1,7 @@
 import React from "react";
 import "./Form.css";
 import { connect } from "react-redux";
-import { initiate_login, reset_state } from "../actions/index";
+import { initiate_login, reset_state } from "../store/actions/index";
 
 import Navbar from "./Navbar";
 

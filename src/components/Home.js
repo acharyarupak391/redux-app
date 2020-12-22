@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { reset_state } from "../actions/index";
 
 import Navbar from "../components/Navbar";
 import "./Home.css";
@@ -54,8 +52,5 @@ function mapStateToProps(state) {
     user: state.user,
   };
 }
-const mapDispatchToProps = {
-  reset_state,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, null)(Home);

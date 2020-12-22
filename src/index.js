@@ -5,8 +5,8 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 // import { logger } from "redux-logger";
-import formReducer from "./reducers/index";
-import rootSaga from "./sagas/index";
+import formReducer from "./store/reducers/index";
+import rootSaga from "./store/sagas/index";
 import { BrowserRouter } from "react-router-dom";
 
 import { persistStore, persistReducer } from "redux-persist";

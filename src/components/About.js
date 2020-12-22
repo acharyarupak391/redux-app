@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { dispatch_message } from "../actions/index";
+import { dispatch_message } from "../store/actions/index";
 
 import Navbar from "../components/Navbar";
 import "./About.css";
