@@ -15,7 +15,7 @@ import { reset_state } from "./actions/index";
 class App extends React.Component {
   constructor(props) {
     super();
-    console.log("App props: ", props);
+    // console.log("App props: ", props);
   }
 
   render() {

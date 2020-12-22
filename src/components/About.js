@@ -20,8 +20,14 @@ class About extends React.Component {
   constructor(props) {
     super();
     // console.log("About props: ", props);
+    let textfieldLabel;
+    props.message
+      ? (textfieldLabel = props.message)
+      : (textfieldLabel = "About yourself!");
     this.state = {
       text: "",
+      textfield: null,
+      textfieldLabel: textfieldLabel,
     };
   }
 
@@ -33,10 +39,28 @@ class About extends React.Component {
     this.setState({
       text: e.target.value,
     });
+    this.state.textfield
+      ? this.setState({ textfield: this.state.textfield })
+      : this.setState({ textfield: e.target });
+  }
+
+  focusHandler(e) {
+    this.setState({ textfieldLabel: "About yourself!" });
+  }
+
+  blurHandler(e) {
+    this.state.text == "" && this.props.message
+      ? this.setState({ textfieldLabel: this.props.message })
+      : this.setState({ textfieldLabel: "About yourself!" });
   }
 
   onSubmit(e) {
+    if (this.state.text.match(/^\s*$/)) {
+      return;
+    }
     this.props.dispatch_message(this.state.text);
+    this.state.textfield.value = "";
+    this.setState({ text: "" });
   }
 
   render() {
@@ -76,11 +100,13 @@ class About extends React.Component {
           <div className="about-form-div">
             <MyTextField
               id="filled-multiline-static"
-              label="About yourself!"
+              label={this.state.textfieldLabel}
               multiline
               rows={7}
               variant="outlined"
               onChange={(e) => this.changeHandler(e)}
+              onFocus={(e) => this.focusHandler(e)}
+              onBlur={(e) => this.blurHandler(e)}
             />
             <br />
             <br />

@@ -1,6 +1,6 @@
 .contact-div {
   position: relative;
-  margin: 20vh auto;
+  margin: 20px auto;
   text-align: center;
   padding: 0;
 }
@@ -75,4 +75,19 @@
   color: white;
   border: 2px solid white;
   transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+
+.about-message {
+  background-color: cadetblue;
+  color: darkred;
+  font-family: "Raleway";
+  font-size: 24px;
+  padding: 10px;
+  width: 60%;
+  margin: 150px auto;
+  text-align: center;
+  border-radius: 15px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 0px;
+  /* min-height: ; */
 }

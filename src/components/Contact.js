@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { reset_state } from "../actions/index";
 
 import Navbar from "../components/Navbar";
 import "./Contact.css";
@@ -9,7 +7,7 @@ import "./Contact.css";
 class Contact extends React.Component {
   constructor(props) {
     super();
-    // console.log("Contact props: ", props);
+    console.log("Contact props: ", props);
   }
 
   componentDidMount() {
@@ -37,6 +35,11 @@ class Contact extends React.Component {
     return (
       <div>
         <Navbar {...prop} />
+        {this.props.message ? (
+          <div className="about-message">{this.props.message}</div>
+        ) : (
+          <br />
+        )}
         <div className="contact-div">
           <p id="emailP">
             <input
@@ -68,11 +71,8 @@ class Contact extends React.Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
+    message: state.message,
   };
 }
 
-const mapDispatchToProps = {
-  reset_state,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Contact);
+export default connect(mapStateToProps, null)(Contact);

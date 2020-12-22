@@ -26,10 +26,10 @@ export default function formReducer(state, action) {
 
     case RESET_STATE:
       return {
-        ...state,
         user: null,
         error: null,
         status: null,
+        message: null,
       };
 
     case DISPATCH_MESSAGE:

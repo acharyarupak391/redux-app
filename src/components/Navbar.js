@@ -10,10 +10,7 @@ import Button from "@material-ui/core/Button";
 class Navbar extends React.Component {
   constructor(props) {
     super();
-    console.log("Navbar props: ", props);
-    if (props.active !== "none") {
-      this.state = { logoutPressed: null };
-    }
+    // console.log("Navbar props: ", props);
   }
 
   onLogout = () => {
