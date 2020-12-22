@@ -78,7 +78,7 @@
 }
 
 .about-message {
-  background-color: cadetblue;
+  background-color: rgb(142, 134, 255);
   color: darkred;
   font-family: "Raleway";
   font-size: 24px;
@@ -89,5 +89,4 @@
   border-radius: 15px;
   border-bottom-left-radius: 0px;
   border-top-right-radius: 0px;
-  /* min-height: ; */
 }

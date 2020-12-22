@@ -7,7 +7,7 @@ import "./Contact.css";
 class Contact extends React.Component {
   constructor(props) {
     super();
-    console.log("Contact props: ", props);
+    // console.log("Contact props: ", props);
   }
 
   componentDidMount() {
