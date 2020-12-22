@@ -1,9 +1,7 @@
 import React from "react";
 import "./Form.css";
 import { connect } from "react-redux";
-import { initiate_login, reset_state } from "../store/actions/index";
-
-import Navbar from "./Navbar";
+import { initiate_login, reset_state } from "../../store/actions/index";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -116,10 +114,8 @@ class Form extends React.Component {
   }
 
   render() {
-    let prop = { active: "none" };
     return (
       <div className="form-div">
-        <Navbar {...prop} />
         <form name="my-form">
           <span className={this.state.warningLabelClass}>
             {this.state.validationWarning}

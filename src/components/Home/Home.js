@@ -1,26 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Navbar from "../components/Navbar";
 import "./Home.css";
 class Home extends React.Component {
   constructor(props) {
     super();
-    this.state = { loggedOut: false };
     // console.log("Home props: ", props);
   }
 
   componentDidMount() {
     document.title = "Home";
+    this.props.onPageLoad("home");
   }
 
   changeLoggedOutState = () => {
-    this.setState({ loggedOut: true });
     this.props.reset_state();
   };
 
   render() {
-    let prop = { active: "home" };
     if (this.props.user) {
       var user = this.props.user;
       var dateString = new Date(user.CreatedAt.split("T")[0])
@@ -28,8 +25,7 @@ class Home extends React.Component {
         .split(" ");
     }
     return (
-      <div>
-        <Navbar {...prop} />
+      <div id="home-outer-div">
         <div className="home-info-div">
           <p>Hello,</p>
           <p className="name">

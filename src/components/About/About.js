@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { dispatch_message } from "../store/actions/index";
+import { dispatch_message } from "../../store/actions/index";
 
-import Navbar from "../components/Navbar";
 import "./About.css";
 
 import Button from "@material-ui/core/Button";
@@ -33,6 +32,7 @@ class About extends React.Component {
 
   componentDidMount() {
     document.title = "About";
+    this.props.onPageLoad("about");
   }
 
   changeHandler(e) {
@@ -64,7 +64,6 @@ class About extends React.Component {
   }
 
   render() {
-    let prop = { active: "about" };
     if (this.props.user) {
       var user = this.props.user;
       var dateString = new Date(user.CreatedAt.split("T")[0])
@@ -73,7 +72,6 @@ class About extends React.Component {
     }
     return (
       <div>
-        <Navbar {...prop} />
         <div className="about-div">
           <div className="info-panel">
             <p>

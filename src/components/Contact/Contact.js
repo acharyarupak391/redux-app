@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Navbar from "../components/Navbar";
 import "./Contact.css";
 
 class Contact extends React.Component {
@@ -12,6 +11,7 @@ class Contact extends React.Component {
 
   componentDidMount() {
     document.title = "Contact";
+    this.props.onPageLoad("contact");
   }
 
   changeLoggedOutState = () => {
@@ -31,10 +31,8 @@ class Contact extends React.Component {
 
   render() {
     if (this.props.user) var emailHref = "mailto:" + this.props.user.email;
-    let prop = { active: "contact" };
     return (
       <div>
-        <Navbar {...prop} />
         {this.props.message ? (
           <div className="about-message">{this.props.message}</div>
         ) : (
