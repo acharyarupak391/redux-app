@@ -12,7 +12,9 @@
   text-align: center;
   left: -110px;
   top: -10px;
-  opacity: 0;
+  /* opacity: 0; */
+  transform: scale(1, 0);
+  transform-origin: center;
 }
 
 #copied > .fas {
@@ -20,14 +22,18 @@
 }
 
 @keyframes blink {
-  25% {
-    opacity: 1;
+  0% {
+    transform-origin: top;
   }
-  75% {
-    opacity: 1;
+  30% {
+    transform: scale(1, 1);
+  }
+  70% {
+    transform: scale(1, 1);
+    transform-origin: bottom;
   }
   100% {
-    opacity: 0;
+    transform: scale(1, 0);
   }
 }
 
@@ -56,7 +62,7 @@
 }
 
 .animate {
-  animation: blink 1s normal;
+  animation: blink 1.25s normal;
 }
 
 .contact-div > a > i {

@@ -8,7 +8,11 @@ var msg_obj = {
   ch,
 };
 
-export default function serveLanguage(lang, id) {
+export function serveText(lang, id) {
+  return msg_obj[lang][id];
+}
+
+export function serveLanguage(lang, id) {
   return (
     <IntlProvider key={lang} messages={msg_obj[lang]} locale="en">
       <FormattedMessage id={id} values="" />

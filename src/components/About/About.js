@@ -4,11 +4,13 @@ import { dispatch_message } from "../../store/actions/index";
 
 import "./About.css";
 
+import { Formik } from "formik";
+
+import { serveText, serveLanguage } from "../../lang/index";
+
+import { styled } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { styled } from "@material-ui/core/styles";
-
-import serveLanguage from "../../lang/index";
 
 const MyTextField = styled(TextField)({
   width: "80%",
@@ -85,23 +87,91 @@ class About extends React.Component {
             <i className="fas fa-info-circle"></i>
           </div>
           <div className="about-form-div">
-            <MyTextField
-              id="filled-multiline-static"
-              label={serveLanguage(this.props.language, "about_yourself")}
-              multiline
-              rows={7}
-              variant="outlined"
-              onChange={(e) => this.changeHandler(e)}
-            />
-            <br />
-            <br />
-            <Button
-              variant="contained"
-              color="inherit"
-              onClick={(e) => this.onSubmit(e)}
+            <Formik
+              initialValues={{ message: "" }}
+              validate={(values) => {
+                const errors = {};
+                // if (!values.email) {
+                //   errors.email = "Required";
+                // } else if (
+                //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                // ) {
+                //   errors.email = "Invalid email address";
+                // }
+                // if (!values.password) {
+                //   errors.password = "Required";
+                // } else if (
+                //   !/[A-Z]/g.test(values.password) ||
+                //   !/[!@#$%^&*(),.?"':{}|<>]/g.test(values.password) ||
+                //   !/[0-9]/g.test(values.password)
+                // ) {
+                //   errors.password =
+                //     "Password must contain capital letter(s), special character(s) & number(s)";
+                // } else if (
+                //   values.password.length < 6 ||
+                //   values.password.length > 25
+                // ) {
+                //   errors.password =
+                //     "Password must be atleast 6 and atmost 25 characters";
+                // }
+                if (/^\s*$/g.test(values.message)) {
+                  errors.message = serveText(
+                    this.props.language,
+                    "empty_text_error"
+                  );
+                } else if (values.message.length < 12) {
+                  errors.message =
+                    serveText(this.props.language, "few_words_error") + " ...";
+                }
+                return errors;
+              }}
+              onSubmit={(values, { setSubmitting }) => {
+                setSubmitting(true);
+                this.props.dispatch_message(values.message);
+                values.message = "";
+                setSubmitting(false);
+              }}
             >
-              {serveLanguage(this.props.language, "submit")}
-            </Button>
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                handleReset,
+                isSubmitting,
+                /* and other goodies */
+              }) => (
+                <form name="about-form" onSubmit={handleSubmit}>
+                  <MyTextField
+                    id="message"
+                    label={serveLanguage(this.props.language, "about_yourself")}
+                    value={values.message}
+                    multiline
+                    rows={7}
+                    variant="outlined"
+                    // onChange={(e) => this.changeHandler(e)}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.message && touched.message ? (
+                    <p className="message-error">{errors.message}</p>
+                  ) : (
+                    <p className="message-error"></p>
+                  )}
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="inherit"
+                    // onClick={(e) => this.onSubmit(e)}
+                    disabled={isSubmitting}
+                  >
+                    {serveLanguage(this.props.language, "submit")}
+                  </Button>
+                </form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>

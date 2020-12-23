@@ -13,7 +13,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { styled } from "@material-ui/core/styles";
 
-import serveLanguage from "../../lang/index";
+import { serveLanguage } from "../../lang/index";
 
 const MyInputLabel = styled(InputLabel)({
   color: "#1D0C00",

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { change_language } from "../../store/actions/index";
 
-import serveLanguage from "../../lang/index";
+import { serveLanguage } from "../../lang/index";
 
 import "./Home.css";
 class Home extends React.Component {

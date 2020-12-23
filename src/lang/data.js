@@ -10,12 +10,14 @@ export const np = {
   joined: "संलग्न भएको",
   about_yourself: "आफ्नो बारेमा...",
   submit: "बुझाउनुहोस्",
+  empty_text_error: "खाली क्षेत्र अनुमति छैन",
+  few_words_error: "कृपया अझै केही शब्दहरु",
 };
 
 export const en = {
   home: "Home",
-  about: "About",
-  contact: "Contact",
+  about: "About Us",
+  contact: "Contact Us",
   logout: "LOGOUT",
   hello: "Hello",
   id: "ID",
@@ -24,6 +26,8 @@ export const en = {
   joined: "Joined",
   about_yourself: "About yourself...",
   submit: "Submit",
+  empty_text_error: "Empty text not allowed",
+  few_words_error: "a few more words please",
 };
 
 export const ch = {
@@ -38,6 +42,8 @@ export const ch = {
   joined: "已加入",
   about_yourself: "關於你自己...",
   submit: "提交",
+  empty_text_error: "不允許空白字段",
+  few_words_error: "請再說幾句話",
 };
 
 export const es = {
@@ -52,4 +58,6 @@ export const es = {
   joined: "unida",
   about_yourself: "acerca de ti mismo...",
   submit: "enviar",
+  empty_text_error: "campo vacío no permitido",
+  few_words_error: "unas palabras más por favor",
 };
