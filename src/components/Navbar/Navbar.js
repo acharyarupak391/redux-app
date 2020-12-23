@@ -13,9 +13,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { styled } from "@material-ui/core/styles";
 
-import { IntlProvider, FormattedMessage } from "react-intl";
-
-import { np, en, es, ch } from "../../lang";
+import serveLanguage from "../../lang/index";
 
 const MyInputLabel = styled(InputLabel)({
   color: "#1D0C00",
@@ -33,13 +31,6 @@ const MySelect = styled(Select)({
 });
 
 const MyFormControl = styled(FormControl)({});
-
-var msg_obj = {
-  en,
-  np,
-  ch,
-  es,
-};
 class Navbar extends React.Component {
   constructor(props) {
     super();
@@ -59,63 +50,55 @@ class Navbar extends React.Component {
       <div>
         <AppBar position="static">
           <Toolbar className="toolbar">
-            <IntlProvider
-              key={this.props.language}
-              messages={msg_obj[this.props.language]}
-              locale="en"
+            <Link
+              className={this.props.active == "home" ? "link active" : "link"}
+              to="/"
             >
-              <Link
-                className={this.props.active == "home" ? "link active" : "link"}
-                to="/"
+              {serveLanguage(this.props.language, "home")}
+            </Link>
+            <Link
+              className={this.props.active == "about" ? "link active" : "link"}
+              to="/about"
+            >
+              {serveLanguage(this.props.language, "about")}
+            </Link>
+            <Link
+              className={
+                this.props.active == "contact" ? "link active" : "link"
+              }
+              to="/contact"
+            >
+              {serveLanguage(this.props.language, "contact")}
+            </Link>
+            <span></span>
+            <MyFormControl>
+              <MyInputLabel>诶अ</MyInputLabel>
+              <MySelect
+                labelId=""
+                id=""
+                value={this.props.language}
+                onChange={this.languageChange}
+                label="Language"
+                variant="filled"
+                color="primary"
               >
-                <FormattedMessage id="home" values="" />
-              </Link>
-              <Link
-                className={
-                  this.props.active == "about" ? "link active" : "link"
-                }
-                to="/about"
+                <MenuItem value="en">English</MenuItem>
+                <MenuItem value="np">नेपाली</MenuItem>
+                <MenuItem value="ch">中文</MenuItem>
+                <MenuItem value="es">Española</MenuItem>
+              </MySelect>
+            </MyFormControl>
+            {this.props.active !== "none" ? (
+              <Button
+                variant="outlined"
+                color="inherit"
+                onClick={this.onLogout}
               >
-                <FormattedMessage id="about" values="" />
-              </Link>
-              <Link
-                className={
-                  this.props.active == "contact" ? "link active" : "link"
-                }
-                to="/contact"
-              >
-                <FormattedMessage id="contact" values="" />
-              </Link>
-              <span></span>
-              <MyFormControl>
-                <MyInputLabel>诶अ</MyInputLabel>
-                <MySelect
-                  labelId=""
-                  id=""
-                  value={this.props.language}
-                  onChange={this.languageChange}
-                  label="Language"
-                  variant="filled"
-                  color="primary"
-                >
-                  <MenuItem value="en">English</MenuItem>
-                  <MenuItem value="np">नेपाली</MenuItem>
-                  <MenuItem value="ch">中文</MenuItem>
-                  <MenuItem value="es">Española</MenuItem>
-                </MySelect>
-              </MyFormControl>
-              {this.props.active !== "none" ? (
-                <Button
-                  variant="outlined"
-                  color="inherit"
-                  onClick={this.onLogout}
-                >
-                  <FormattedMessage id="logout" values="" />
-                </Button>
-              ) : (
-                <i></i>
-              )}
-            </IntlProvider>
+                {serveLanguage(this.props.language, "logout")}
+              </Button>
+            ) : (
+              <i></i>
+            )}
           </Toolbar>
         </AppBar>
       </div>

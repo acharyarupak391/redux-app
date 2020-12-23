@@ -8,15 +8,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { styled } from "@material-ui/core/styles";
 
-import { IntlProvider, FormattedMessage } from "react-intl";
-import { np, en, es, ch } from "../../lang";
-
-var msg_obj = {
-  en,
-  np,
-  ch,
-  es,
-};
+import serveLanguage from "../../lang/index";
 
 const MyTextField = styled(TextField)({
   width: "80%",
@@ -68,55 +60,49 @@ class About extends React.Component {
     return (
       <div>
         <div className="about-div">
-          <IntlProvider
-            key={this.props.language}
-            messages={msg_obj[this.props.language]}
-            locale="en"
-          >
-            <div className="info-panel">
-              <p>
-                {user.first_name} {user.last_name}
-              </p>
-              <p>
-                <FormattedMessage id="id" values="" />: <span>{user.ID}</span>
-              </p>
-              <p>
-                <FormattedMessage id="working_at" values="" />:{" "}
-                <span>{user.company}</span>
-              </p>
-              <p>
-                <FormattedMessage id="designation" values="" />:{" "}
-                <span>{user.designation}</span>
-              </p>
-              <p>
-                <FormattedMessage id="joined" values="" />:{" "}
-                <span>
-                  {dateString[0]}, {dateString[1]} {dateString[2]},{" "}
-                  {dateString[3]}
-                </span>
-              </p>
-              <i className="fas fa-info-circle"></i>
-            </div>
-            <div className="about-form-div">
-              <MyTextField
-                id="filled-multiline-static"
-                label={msg_obj[this.props.language]["about_yourself"]}
-                multiline
-                rows={7}
-                variant="outlined"
-                onChange={(e) => this.changeHandler(e)}
-              />
-              <br />
-              <br />
-              <Button
-                variant="contained"
-                color="inherit"
-                onClick={(e) => this.onSubmit(e)}
-              >
-                <FormattedMessage id="submit" values="" />
-              </Button>
-            </div>
-          </IntlProvider>
+          <div className="info-panel">
+            <p>
+              {user.first_name} {user.last_name}
+            </p>
+            <p>
+              {serveLanguage(this.props.language, "id")}: <span>{user.ID}</span>
+            </p>
+            <p>
+              {serveLanguage(this.props.language, "working_at")}:{" "}
+              <span>{user.company}</span>
+            </p>
+            <p>
+              {serveLanguage(this.props.language, "designation")}:{" "}
+              <span>{user.designation}</span>
+            </p>
+            <p>
+              {serveLanguage(this.props.language, "joined")}:{" "}
+              <span>
+                {dateString[0]}, {dateString[1]} {dateString[2]},{" "}
+                {dateString[3]}
+              </span>
+            </p>
+            <i className="fas fa-info-circle"></i>
+          </div>
+          <div className="about-form-div">
+            <MyTextField
+              id="filled-multiline-static"
+              label={serveLanguage(this.props.language, "about_yourself")}
+              multiline
+              rows={7}
+              variant="outlined"
+              onChange={(e) => this.changeHandler(e)}
+            />
+            <br />
+            <br />
+            <Button
+              variant="contained"
+              color="inherit"
+              onClick={(e) => this.onSubmit(e)}
+            >
+              {serveLanguage(this.props.language, "submit")}
+            </Button>
+          </div>
         </div>
       </div>
     );
