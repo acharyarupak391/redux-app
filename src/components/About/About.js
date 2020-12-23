@@ -12,7 +12,7 @@ import serveLanguage from "../../lang/index";
 
 const MyTextField = styled(TextField)({
   width: "80%",
-  backgroundColor: "white",
+  backgroundColor: "rgb(70, 70, 70)",
   borderRadius: "5px",
   borderBottomLeftRadius: "0px",
   borderBottomRightRadius: "0px",

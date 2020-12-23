@@ -11,8 +11,6 @@ import Contact from "./components/Contact/Contact";
 import { connect } from "react-redux";
 import { reset_state } from "./store/actions/index";
 
-// import Test from "./Test";
-
 class App extends React.Component {
   constructor(props) {
     super();
@@ -25,7 +23,6 @@ class App extends React.Component {
   };
 
   render() {
-    // let testProps = { site: "test" };
     let routeProps = { onPageLoad: this.changeActive };
 
     return (
@@ -34,7 +31,6 @@ class App extends React.Component {
           <div>
             <Navbar {...this.state} />
             <Switch>
-              {/* <Route path="/test" render={(props) => <Test {...testProps} />} /> */}
               <Route
                 exact
                 path={["/", "/home"]}

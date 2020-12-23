@@ -7,6 +7,7 @@ class Contact extends React.Component {
   constructor(props) {
     super();
     // console.log("Contact props: ", props);
+    this.state = { animationClass: "" };
   }
 
   componentDidMount() {
@@ -27,6 +28,10 @@ class Contact extends React.Component {
   blink(e) {
     e.target.select();
     document.execCommand("copy");
+    this.setState({ animationClass: "animate" });
+    e.target.nextSibling.addEventListener("animationend", (e) => {
+      this.setState({ animationClass: "" });
+    });
   }
 
   render() {
@@ -49,7 +54,7 @@ class Contact extends React.Component {
                 width: this.props.user.email.length * 14.75 + "px",
               }}
             />
-            <span id="copied">
+            <span className={this.state.animationClass} id="copied">
               <i className="fas fa-clipboard-check"></i>
               <i>Copied!</i>
             </span>
