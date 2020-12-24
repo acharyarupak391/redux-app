@@ -133,7 +133,6 @@ class About extends React.Component {
                 handleChange,
                 handleBlur,
                 handleSubmit,
-                /* and other goodies */
               }) => (
                 <form name="about-form" onSubmit={handleSubmit}>
                   <MyTextField
