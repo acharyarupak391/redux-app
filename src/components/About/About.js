@@ -5,6 +5,7 @@ import { dispatch_message } from "../../store/actions/index";
 import "./About.css";
 
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 import { serveText, serveLanguage } from "../../lang/index";
 
@@ -14,7 +15,7 @@ import TextField from "@material-ui/core/TextField";
 
 const MyTextField = styled(TextField)({
   width: "80%",
-  backgroundColor: "rgb(70, 70, 70)",
+  backgroundColor: "white",
   borderRadius: "5px",
   borderBottomLeftRadius: "0px",
   borderBottomRightRadius: "0px",
@@ -53,12 +54,22 @@ class About extends React.Component {
   }
 
   render() {
-    if (this.props.user) {
-      var user = this.props.user;
-      var dateString = new Date(user.CreatedAt.split("T")[0])
-        .toDateString()
-        .split(" ");
-    }
+    var user = this.props.user;
+    var dateString = new Date(user.CreatedAt.split("T")[0])
+      .toDateString()
+      .split(" ");
+
+    const AboutSchema = Yup.object().shape({
+      website: Yup.string().url(
+        serveText(this.props.language, "invalid_url_error")
+      ),
+      // .min(2, "Too Short!")
+      // .max(50, "Too Long!")
+      message: Yup.string()
+        .min(12, serveText(this.props.language, "few_words_error") + "...")
+        .required(serveText(this.props.language, "empty_text_error")),
+    });
+    var isReady;
     return (
       <div>
         <div className="about-div">
@@ -88,32 +99,10 @@ class About extends React.Component {
           </div>
           <div className="about-form-div">
             <Formik
-              initialValues={{ message: "" }}
-              validate={(values) => {
+              initialValues={{ message: "", website: "" }}
+              /*validate={(values) => {
                 const errors = {};
-                // if (!values.email) {
-                //   errors.email = "Required";
-                // } else if (
-                //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                // ) {
-                //   errors.email = "Invalid email address";
-                // }
-                // if (!values.password) {
-                //   errors.password = "Required";
-                // } else if (
-                //   !/[A-Z]/g.test(values.password) ||
-                //   !/[!@#$%^&*(),.?"':{}|<>]/g.test(values.password) ||
-                //   !/[0-9]/g.test(values.password)
-                // ) {
-                //   errors.password =
-                //     "Password must contain capital letter(s), special character(s) & number(s)";
-                // } else if (
-                //   values.password.length < 6 ||
-                //   values.password.length > 25
-                // ) {
-                //   errors.password =
-                //     "Password must be atleast 6 and atmost 25 characters";
-                // }
+
                 if (/^\s*$/g.test(values.message)) {
                   errors.message = serveText(
                     this.props.language,
@@ -124,12 +113,17 @@ class About extends React.Component {
                     serveText(this.props.language, "few_words_error") + " ...";
                 }
                 return errors;
-              }}
+              }}*/
+              validationSchema={AboutSchema}
               onSubmit={(values, { setSubmitting }) => {
-                setSubmitting(true);
-                this.props.dispatch_message(values.message);
+                let msg = values.message;
+                let web = values.website;
                 values.message = "";
-                setSubmitting(false);
+                values.website = "";
+                this.props.dispatch_message({
+                  message: msg,
+                  website: web,
+                });
               }}
             >
               {({
@@ -139,11 +133,25 @@ class About extends React.Component {
                 handleChange,
                 handleBlur,
                 handleSubmit,
-                handleReset,
-                isSubmitting,
                 /* and other goodies */
               }) => (
                 <form name="about-form" onSubmit={handleSubmit}>
+                  <MyTextField
+                    id="website"
+                    label={serveLanguage(this.props.language, "personal_site")}
+                    value={values.website}
+                    multiline
+                    rows={1}
+                    variant="outlined"
+                    // onChange={(e) => this.changeHandler(e)}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.website && touched.website ? (
+                    <p className="message-error">{errors.website}</p>
+                  ) : (
+                    <p className="message-error"></p>
+                  )}
                   <MyTextField
                     id="message"
                     label={serveLanguage(this.props.language, "about_yourself")}
@@ -160,12 +168,18 @@ class About extends React.Component {
                   ) : (
                     <p className="message-error"></p>
                   )}
+
+                  {!errors.website &&
+                  !errors.message &&
+                  (touched.website || touched.message)
+                    ? (isReady = true)
+                    : (isReady = false)}
                   <Button
                     type="submit"
                     variant="contained"
                     color="inherit"
                     // onClick={(e) => this.onSubmit(e)}
-                    disabled={isSubmitting}
+                    disabled={!isReady}
                   >
                     {serveLanguage(this.props.language, "submit")}
                   </Button>

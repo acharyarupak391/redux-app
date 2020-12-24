@@ -10,8 +10,10 @@ export const np = {
   joined: "संलग्न भएको",
   about_yourself: "आफ्नो बारेमा...",
   submit: "बुझाउनुहोस्",
-  empty_text_error: "खाली क्षेत्र अनुमति छैन",
+  empty_text_error: "खाली क्षेत्र अनुमति छैन ।",
   few_words_error: "कृपया अझै केही शब्दहरु",
+  personal_site: "तपाईंको व्यक्तिगत वेबसाइट",
+  invalid_url_error: "अवैध यू.आर.एल स्वीकार्य छैन ।",
 };
 
 export const en = {
@@ -26,8 +28,10 @@ export const en = {
   joined: "Joined",
   about_yourself: "About yourself...",
   submit: "Submit",
-  empty_text_error: "Empty text not allowed",
+  empty_text_error: "Empty text not allowed.",
   few_words_error: "a few more words please",
+  personal_site: "Your personal website",
+  invalid_url_error: "Invalid URL not accepted.",
 };
 
 export const ch = {
@@ -44,6 +48,8 @@ export const ch = {
   submit: "提交",
   empty_text_error: "不允許空白字段",
   few_words_error: "請再說幾句話",
+  personal_site: "您的個人網站",
+  invalid_url_error: "無效的網址不被接受",
 };
 
 export const es = {
@@ -60,4 +66,6 @@ export const es = {
   submit: "enviar",
   empty_text_error: "campo vacío no permitido",
   few_words_error: "unas palabras más por favor",
+  personal_site: "tu sitio web personal",
+  invalid_url_error: "No se acepta URL no válida.",
 };

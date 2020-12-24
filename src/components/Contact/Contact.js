@@ -35,11 +35,15 @@ class Contact extends React.Component {
   }
 
   render() {
-    if (this.props.user) var emailHref = "mailto:" + this.props.user.email;
+    var emailHref = "mailto:" + this.props.user.email;
     return (
       <div>
         {this.props.message ? (
-          <div className="about-message">{this.props.message}</div>
+          <div className="about-message">
+            <a href={this.props.message.website}>My Personal site</a>
+            <br />
+            <span>{this.props.message.message}</span>
+          </div>
         ) : (
           <br />
         )}
