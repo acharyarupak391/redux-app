@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 import Form from "./components/Form/Form";
@@ -46,10 +46,21 @@ class App extends React.Component {
                 path="/contact"
                 render={(props) => <Contact {...routeProps} />}
               />
+              <Route path="/login">
+                <Redirect to="/" />
+              </Route>
+              <Route render={() => <h1>Four OH! Four</h1>} />
             </Switch>
           </div>
         ) : (
-          <Form />
+          <Switch>
+            <Route path="/login">
+              <Form />
+            </Route>
+            <Route>
+              <Redirect to="/login" />
+            </Route>
+          </Switch>
         )}
       </div>
     );

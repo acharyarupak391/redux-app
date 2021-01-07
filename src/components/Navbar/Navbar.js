@@ -34,7 +34,7 @@ const MyFormControl = styled(FormControl)({});
 class Navbar extends React.Component {
   constructor(props) {
     super();
-    // console.log("Navbar props: ", props);
+    console.log("Navbar props: ", props);
   }
 
   onLogout = () => {
@@ -44,6 +44,10 @@ class Navbar extends React.Component {
   languageChange = (e) => {
     this.props.change_language(e.target.value);
   };
+
+  componentDidMount() {
+
+  }
 
   render() {
     return (
